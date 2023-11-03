@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "icedrive-blob"
+version = "0.0.1"
+authors = [
+  { name="Put Your name Here", email="youremailaddress@uclm.es" },
+]
+description = "Implementation of IceDrive Authentication service"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-only"
+dependencies = [
+    "zeroc-ice>=3.7",
+]
+
+[project.optional-dependencies]
+tests = ["pytest"]
+linters = ["black", "ruff", "pydocstyle"]
+
+[project.urls]
+"Homepage" = "https://github.com/YOURUSERNAME/YOURREPOSITORY"
+
+[project.scripts]
+icedrive-blob = "icedrive_blob.app:main"
