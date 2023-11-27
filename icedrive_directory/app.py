@@ -6,7 +6,7 @@ from typing import List
 
 import Ice
 
-from .directory import Directory
+from .directory import DirectoryService
 
 
 class DirectoryApp(Ice.Application):
@@ -17,7 +17,7 @@ class DirectoryApp(Ice.Application):
         adapter = self.communicator().createObjectAdapter("DirectoryAdapter")
         adapter.activate()
 
-        servant = Directory()
+        servant = DirectoryService()
         servant_proxy = adapter.addWithUUID(servant)
 
         logging.info("Proxy: %s", servant_proxy)
