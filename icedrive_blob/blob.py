@@ -25,11 +25,11 @@ class BlobService(IceDrive.BlobService):
         """Mark a blob_id as unlinked (removed) from some directory."""
 
     def upload(
-        self, blob: IceDrive.DataTransferPrx, current: Ice.Current = None
+        self, user: IceDrive.UserPrx, blob: IceDrive.DataTransferPrx, current: Ice.Current = None
     ) -> str:
         """Register a DataTransfer object to upload a file to the service."""
 
     def download(
-        self, blob_id: str, current: Ice.Current = None
+        self, user: IceDrive.UserPrx, blob_id: str, current: Ice.Current = None
     ) -> IceDrive.DataTransferPrx:
         """Return a DataTransfer objet to enable the client to download the given blob_id."""
