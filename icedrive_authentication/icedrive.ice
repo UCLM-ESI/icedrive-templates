@@ -21,13 +21,6 @@
 
   exception TemporaryUnavailable { string serviceName; };
 
-  // *** Services discovery *** //
-  interface Discovery {
-    void announceAuthentication(Authentication* prx);
-    void announceDirectoryServicey(DirectoryService* prx);
-    void announceBlobService(BlobService* prx);
-  };
-
   // *** SERVICES *** //
 
   // Authentication Service
@@ -47,12 +40,14 @@
   // Authentication queries
   interface AuthenticationQueryResponse {
     void loginResponse(User* user);
+    void userExists();
     void userRemoved();
     void verifyUserResponse(bool result);
   };
 
   interface AuthenticationQuery {
     void login(string username, string password, AuthenticationQueryResponse* response);
+    void doesUserExist(string username, AuthenticationQueryResponse* response);
     void removeUser(string username, string password, AuthenticationQueryResponse* response);
     void verifyUser(User *user, AuthenticationQueryResponse* response);
   };
@@ -74,12 +69,14 @@
   // Blob service queries
   interface BlobQueryResponse {
     void downloadBlob(DataTransfer* blob);
+    void blobExists();
     void blobLinked();
     void blobUnlinked();
   };
 
   interface BlobQuery {
     void downloadBlob(string blobId, BlobQueryResponse* response);
+    void blobIdExists(string blobId, BlobQueryResponse* response);
     void linkBlob(string blobId, BlobQueryResponse* response);
     void unlinkBlob(string blobId, BlobQueryResponse* response);
   };
@@ -111,5 +108,12 @@
 
   interface DirectoryQuery{
     void rootDirectory(User* user, DirectoryQueryResponse* response);
+  };
+
+  // *** Services discovery *** //
+  interface Discovery {
+    void announceAuthentication(Authentication* prx);
+    void announceDirectoryServicey(DirectoryService* prx);
+    void announceBlobService(BlobService* prx);
   };
 }
