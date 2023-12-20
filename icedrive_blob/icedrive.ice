@@ -93,8 +93,8 @@
 
     Strings getFiles();
     string getBlobId(string filename) throws FileNotFound;
-    void linkFile(string fileName, string blobId) throws FileAlreadyExists;
-    void unlinkFile(string fileName) throws FileNotFound;
+    void linkFile(string fileName, string blobId) throws FileAlreadyExists, TemporaryUnavailable;
+    void unlinkFile(string fileName) throws FileNotFound, TemporaryUnavailable;
   };
 
   interface DirectoryService {
